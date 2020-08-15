@@ -1,0 +1,152 @@
+***** Aplicando Conceitos de Back-End - Conceito de Servidor ******
+
+// Configurações terminal para acessar GitBash
+-- 1 Atalho crtl+shift+ - Abrir Terminal
+-- 2 na haba Terminal - [ 5:powershell] -- selecionar select Default Shell - selecionar opção GitBash
+
+//Comandos GitBash
+command:   cd/c/nlw 
+command:   pwd  -- mostrar pasta diretorio do sistema
+
+// para consultar Node.js no Terminal condigurado com GitBash add
+command:  $ node -v
+     / se apresentar v12.18.3  - ok funcionando.
+command:  $ npm -v
+    / se apresentar 6.14.6  - ok funcionando.  [-v] -(qual a versão)
+
+
+// Criar Servidor web
+1- extensoes - removido o liveServer.
+
+2- Em terminal -1:Bash- adicionar novo servidor web local.
+ command:  npm init -y   
+     / [npm]-(node package maneger)- resp. fazer gerenciamento de dependencias de pacotes.
+     / [init-y] - inicio um novo projeto na pasta raiz do projeto, em c/nlw.
+     / vai criar um arquivo {} pakage.json -([json]-java script object notation]) na pasta raiz.
+     / deve abrir arquivo: package.json - para criar comandos de serviços.
+ 
+ command:  npm install express   
+      / [express] - Bliblioteca de coleção de ideias e eventos e dependencias que npm, vai baixar no projeto. 
+      / vai vai criar arquivo {}packge-lok.json (mapeia dependencias da aplicação), e criar a pasta node_modules no projeto.
+      / deve abrir o arquivo package.json, vera que criou as dependencias   ["dependencies": {"express": "^4.17.1"].
+      
+      /Criar novo arquivo - pasta src -nome: server.js
+      / Abrir arquivo server.js incluir comando para chamar dependencias Json 
+       command: require('express')().listen(5500)    //[listen]-- funcionalidade abrir porta 5500 servidor 
+
+  // Para iniciar  0 serviço porta 5500 servidor
+   1- Em terminal 1-Bash - informar chamada de execução do arquivo server.js
+ *  command:  node src/server.js
+          / vai iniciar o Node.js - dar permissoes administrador
+          / no navegador web digitar endereco:  127.0.0.1:5500/index.html
+          / ao executar - apresenta > Cannot GET / significa que deve configurar rotas de paginas.html
+
+  // Para adicionar Rotas - execução do inicio servidor      
+   1- ajustar o arquivo server.js.  
+      // incluir  .get("/")     -- Assim --- // [Get] é funcionalidade do Exprees "/" é argumento.
+                                require('express')()
+                                .get("/", (req, res) => {         // [Get] é funcionalidade do Exprees "/" é argumento. (req,res) => function curta.
+                                                                  // [req] é requisisão(pegar dados) - [res] é resposta (Mostrar resultado).
+                                    return res.send("Hi from NWL")   
+                                   })
+                                .listen(5500)  
+
+   // ferramenta [nodemon ] serve para iniciar servidor, toda vez que precisar atualizar arquivo server.js
+   command:  npm run dev  
+         / [-D] vai instalar em local especifico  - sig. utilizado para desenvolvedor.  
+         / após instalar , abrir arquivo: package.json , e incluir na "Script" { "dev": "nodemon src/server.js""}     
+
+   //para iniciar servidor - apos instalar a ferramenta [nodemon]  
+ *  command:  nodemon src/server.js  
+        / vai apresentar as informações de serviço no servidor executando pelo nodemon
+            > nlw@ dev C:\nlw
+            > nodemon src/server.js
+
+            [nodemon] 2.0.4
+            [nodemon] to restart at any time, enter `rs`
+            [nodemon] watching path(s): *.*
+            [nodemon] watching extensions: js,mjs,json  
+            [nodemon] starting `node src/server.js`     
+                                                                      
+    // DICA:  Para Iniciar Servidor - Sem dependente do terminal VsCode / Nodemon    
+    1- Abrir o GitBash
+    2- Incluir caminho diretorio pasta projeto 
+      command:  cd/c/nlw
+    3- aplicar ação de iniciar Servidor
+  *    command:  node src/server.js  
+    
+
+
+  // Instalar extenção - [ Nunjucks ]  - Template Enginer
+  1- abrir terminal 1-bash,bash - opção: splitTerminal
+        command: $ npm install nunjucks
+          / vai apresentar as informações:
+
+            npm WARN nlw@ No repository field.
+            npm WARN nlw@ No license field.
+            npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@2.1.3 (node_modules\fsevents):
+            npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@2.1.3: wanted {"os":"darwin","arch":"any"} (current: {"os":"win32","arch":"x64"})
+
+            + nunjucks@3.2.2
+            added 4 packages from 3 contributors and audited 173 packages in 5.089s
+
+            8 packages are looking for funding
+              run `npm fund` for details
+
+            found 0 vulnerabilities
+
+
+  // Configurações no Servidor para Usar o Nunjucks      
+  1- Ajustar no arquivo: server.js -  importar : const nunjucks = require('nunjucks')                                                      
+
+
+
+******************** Aplicando Config. INSTALL  - SQL - Lite **********************************
+
+// para instalação Extenção Sql Lite no VsCode
+  1- abrir terminal 1-bash,bash - opção: splitTerminal
+command:  npm install sqlite-async
+    / vai apresentar as informações;
+      > sqlite3@4.2.0 install C:\nlw\node_modules\sqlite3
+      > node-pre-gyp install --fallback-to-build
+
+      node-pre-gyp WARN Using needle for node-pre-gyp https download 
+      [sqlite3] Success: "C:\nlw\node_modules\sqlite3\lib\binding\node-v72-win32-x64\node_sqlite3.node" is installed via remote
+      npm WARN nlw@ No repository field.
+      npm WARN nlw@ No license field.
+      npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@2.1.3 (node_modules\fsevents):
+      npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@2.1.3: wanted {"os":"darwin","arch":"any"} (current: {"os":"win32","arch":"x64"})
+
+      + sqlite-async@1.1.0
+      added 54 packages from 39 contributors and audited 227 packages in 19.06s
+
+      9 packages are looking for funding
+        run `npm fund` for details
+
+      found 0 vulnerabilities 
+
+
+ // Para testar conexão pelo terminal - usando console
+ command: node src/database/db.js   
+       / vai apresentar texto informado na linha na função em db.js " console.log("Chequei aqui") "  
+         chequei aqui
+       / depois verique na pasta: database/  vai ter criado arquivo: dataBase.sqlite  
+
+
+ // Para Vizualizar as Tabelas Criadas no Projeto 
+   1- Abrir Extencions no VsCode - para instalar Puglin sqlite
+   2- pesquisar por SQLite 0.8.2
+   3- clicar no botão Install
+   4- procurar Arquivo: database/database.sqlite
+   5- clicar botão direito opção: Open DataBase
+   6- Acessar Aba > SQLITE EXPLORER     
+
+ // Para Rodar o test.js  -- inserir dados de Testes nas tabelas
+     1- Abrir Extencions no VsCode 
+     Command: node src/database/test.js
+
+ // Para visualizar registro incluso nas tabela no banco de dados VsCode
+    1- Acessar SQLITE EXPLORER
+    2- procurar Arquivo: database/database.sqlite
+    3- clicar botão direito opção: Open DataBase
+    4- clicar botão direito na tabela opção Show Table.     

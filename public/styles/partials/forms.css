@@ -1,0 +1,56 @@
+.select-block label,
+.input-block label,
+.textarea-block label {
+  font-size: 1.4rem;
+  color: var(--color-text-complement);
+}
+
+
+.input-block input,
+.select-block select,
+.textarea-block textarea {
+    width: 100%;
+    height: 5.6rem;
+    margin-top: 0.8rem; /*separação topo input/select para label(texto)*/
+    border-radius: 0.8rem; /*bordas arredondadas*/
+    background: var(--color-input-background); /*cor de fundo input/select*/
+    border: 1px solid var(--color-line-in-white); /*cor de borda solida input/select*/
+    outline: 0; /*Removo borda negrito ao selecionar o input/select*/
+    padding: 0 1.6rem; /*espaçamento interno nas laterais input/select para label-options e icones selelçai*/
+    font: 1.6rem Archivo; /*ajusto fonte nos opetions de seleção*/
+}
+
+.textarea-block textarea {/*Ajustes de Focus-within::after - Posição*/
+    padding: 1.2rem 1.6rem;
+    height: 16rem;
+    
+    resize: vertical; /*[resize] ajusto posição expansão textarea vertical*/
+ }
+
+
+.input-block ,
+.textarea-block {
+    position: relative;  /* posicionamento da folha de seleção do input (focus = Absolute)*/
+}
+
+
+/*:focus-within - Ajusto quando um elemento que esta em foco(clicar)*/
+/*: after: Pseudo Elemento criado somente com elemento em foco(click) */
+.input-block:focus-within::after,
+.textarea-block:focus-within::after {
+   content: "";
+   width: calc(100% - 3.2rem); /*calculo 100% do subtraindo 3.2rem largura*/
+   height: 2px;
+   background: var(--color-primary-light); /*cor de fundo seleção click input/select*/
+
+   position: absolute; /*posiciona a folha no nivel relativo input-bloc [Pai]*/
+   left: 1.6rem;  /*posicionamento lateral*/
+   right: 1.6rem; /*posicionamento lateral*/
+   bottom: 0px;     /* posicionamento da folha de seleção do imput*/
+}
+
+label small {
+    font-size:  1.2rem;
+    padding-left: 1.2rem;
+    color: var(--color-small-info);
+}

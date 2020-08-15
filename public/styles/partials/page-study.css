@@ -1,0 +1,217 @@
+#page-study #container {
+    width: 100vw;
+    height: 100vh;
+}
+
+#search-teacher {
+    margin-top: 3.2rem;
+}
+
+#search-teachers label {
+    color: var(--color-title-in-primary);
+}
+
+#search-teachers .select-block {
+    margin-bottom: 1.4rem;
+}
+
+#search-teachers button {
+    width: 100%;
+    height: 5.6rem;
+    background: var(--color-secondary);/*cor fundo botão*/
+    color: var(--color-button-text); /*cor texto botão*/
+    border: 0; /* remove as bordas do botão*/
+    border-radius:  .8rem; /*bordas arredondadas*/
+    cursor: pointer;   /*cursor do mouse :mão*/
+    font: 700 1.6rem Archivo;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /*text-decoration: none;  //remove underline do texto não tem neste caso*/
+    transition: background 0.2s;
+    margin-top: 3.2rem; 
+
+}
+
+#search-teachers button:hover {
+    background-color: var(--color-secondary-dark);
+}
+
+
+#page-study main {
+    margin: 3.2rem;
+    width: 90%;
+}
+
+.teacher-item {
+   background-color: var(--color-box-base);
+   border:1px solid var(--color-line-in-white);
+   border-radius: .8rem;
+   margin-top: 2.4rem;
+}
+
+.teacher-item header {
+  padding: 3.2rem 2rem; /*espamento interno 3.2rem em baixo 2rem nas laterais*/
+  display: flex; /*ajustos flexivel do texto interno na feader.*/
+  align-items: center; /*alinho todo ao centro*/
+}
+
+.teacher-item header img {
+    width: 8rem; /*ajuste 8rem largura - quadrado perfeito*/
+    height: 8rem; /*ajuste 8rem altura - quadrado perfeito*/
+    border-radius: 50%; /*arredondamento de bordas do quadrado para redondo*/
+}
+
+
+.teacher-item header div {
+    margin-left: 2.4rem; /*ajusto margem alinhamento de espaco entre texto x Imagem */
+  }
+
+.teacher-item header div  strong{
+    font:700 2.4rem Archivo; /*ajusto fonte do texto nome*/
+    display: block;  /* ajusto Texto in <strong> Nome em cima, Texto <Span> em baixo */
+    color: var(--color-text-title);
+}
+
+.teacher-item header div span {
+    font-size: 1.6rem; /*ajusto  tamanho fonte do texto nome*/
+    display: block;
+    margin-top: 4rem; /* margin top, so pode ser alterado com display Blok*/
+
+}
+
+.teacher-item > p { /* > este sinal é para ajuste 1° de nivel de P (paragrafo)*/
+    padding: 0 2rem; /*espaçamento de texto internamente no </P> do <article>*/
+    font-size: 1.6rem; /*ajusto  tamanho fonte do texto nome*/
+    line-height: 2.8rem;
+}
+
+
+.teacher-item footer {
+    padding: 3.2rem 2rem;
+    background-color:var(--color-box-footer); /*ajusto  cor de fundo da tab footer*/
+    border-top: 1px solid var(--color-line-in-white); /*inclui linha no topo e coloco cor no tab footer*/
+    margin-top: 3.2rem;
+
+    display: flex; /* ajusto itens texto e botão ao lado do outro*/
+    align-items: center;  /*alinho ambos no centro */
+    justify-content: space-between; /*alinho texto para um canto e botão para o outro canto*/
+
+}
+
+.teacher-item footer p {
+    font-size: 1.4rem;
+    line-height: 2.4rem;
+    color: var(--color-text-complement);
+}
+
+.teacher-item footer p strong {
+    font-size: 1.6rem;
+    color: var(--color-primary);
+    display: block;
+}
+
+.teacher-item footer .button {
+    width: 20rem;
+    height: 5.6rem;
+    background: var(--color-secondary);
+    color: var(--color-button-text);
+    border: 0;
+    border-radius: .8rem;
+    cursor: pointer;
+    font: 700 1.4rem Archivo;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly; /*alinho espaço constantes dos elementos interno button*/
+
+    text-decoration: none;
+
+    transition: background 0.2s;
+    margin-left: 1.6rem;
+}
+
+.teacher-item footer .button:hover {
+    background: var(--color-secondary-dark);
+}
+
+#page-study main .no-results {
+    max-width: 30rem;
+    margin: 12rem auto;
+    text-align: center;
+}
+
+@media (min-width:700px){
+    #page-study #container {
+        max-width: 100vw;
+    }
+
+    .page-header {  /*ajusto altuma maxima do cabecalho header*/
+        height: 340px;
+    }
+
+    .page-header .top-bar-container { /*ajusto largura maxima do cabecalho  header*/
+       max-width: 1100px; 
+    }
+
+    .page-header .header-content { /*ajusto itens na posicao inicio 740px*/
+       max-width: 740px;
+
+       margin: 0 auto; /*retiro espaçamento em cima em baixo e laterais fica autom.*/
+
+       flex: 1 1; /*preencho todo espaco dentro da caixa por completo*/
+       padding-bottom: 48px;
+       display: flex; /*deixo flexiveis os objetos internos */
+       flex-direction: column; /*matenho os elemento uma abaixo do outro*/
+       justify-content: center;
+    }
+
+    .page-header .header-content strong {
+        max-width: 350px; /*quebro o texto proffy dentro da estrong*/
+    }
+
+    .teacher-item header,
+    .teacher-item footer {
+        padding: 32px;
+    }
+
+    #search-teachers { 
+        display: grid; /*alinho inputs/selects 1 linha por grid */
+        grid-template-columns: repeat(4, 1fr);/* repeat tudo iquais 4 = 1fr*/
+        gap: 16px; /*espacamento 16 entre os itens*/
+        position: absolute; /*devo posicionar relative na tag header-content pai*/
+        bottom: -28px;
+    } 
+
+    #page-study main {
+        padding: 32px 0; /* espaçamento dos itens no main / Cabeçalho header*/
+        max-width: 740px; /* alinho os itens largura do main = cabecalho header */
+        margin: 0 auto; /* retiro a margin dos itens mantenho ato entre main / cabecalho header */
+    }
+
+    #search-teachers .select-block {
+        margin-bottom: 0; /* centralizo itens select + input /Button entre (Main / Cabeçalho header)*/
+     }
+
+     .teacher-item > p  { /* > este sinal é para ajuste 2° de nivel de P (paragrafo)*/
+        padding: 0 32px; /* ajusto espaçamento antes do P*/
+        
+     }
+
+    .teacher-item footer  p strong {
+       display: initial; /* posiciono strong a frente dos itens ponto inicial a frente de valor R$*/
+       margin-left: 16px; /* aplico espacamento, 16 para não ficar grudado e alinhado com demais strongs*/
+    }
+
+    .teacher-item footer button {
+        width: 245px; /* ajusto tamanho do botão Entrar em contato R$*/
+        font-size: 16px; /* ajusto a fonte do botão*/
+        justify-content: center; /*ajusto itens interno botão ao centro do mesmo*/
+     }
+    
+     .teacher-item footer button img {
+        margin-right: 16px;  /*ajusto espaço de img do botão / texto que foi centralizado*/
+     }
+
+
+}

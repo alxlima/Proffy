@@ -1,0 +1,158 @@
+<!-- Atalhos aprendidos -->
+   <!-- 1- ( ! + Enter - Escreve a estrutura de html basica e completa) -->
+   <!-- Ctrl+shift + p  : commando : >shortcuts -->
+
+ <!-- Extencoes Aprendidas vsCode -->
+   <!-- 1 - launchbase - Serve Para melhorar identações e visual do codigo -->
+   <!-- 2 - Live Server 5.6.1 - serve para atualizar Browser(Pag) Autom. ao salvar code -->
+
+   <!DOCTYPE html>
+ <html lang="en"> <!--lang é um atributo  -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#8257E5">
+    <title>Proffy | Sua Plataforma de estudos online</title>
+
+    <!-- inlcuindo um icone na pangina -->
+    <link rel="shortcut icon" href="images/favicon.png" type="image/png">
+
+   <link rel="stylesheet" href="/styles/main.css">
+   <link rel="stylesheet" href="/styles/partials/header.css">
+   <link rel="stylesheet" href="/styles/partials/forms.css">
+   <link rel="stylesheet" href="/styles/partials/page-give-classes.css">
+  
+   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&amp;family=Poppins:wght@400;600&amp;display=swap" rel="stylesheet">
+   <!-- dica para ajustar fonte com mais detalhes espacamento  trecho:@400;600;700&amp; -->
+   <!-- <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&amp;family=Poppins:wght@400;600&amp;display=swap" rel="stylesheet"> -->
+   
+    <!-- modelo padrão Defer(de fora) - entrada scripts javaScript  -->
+   <script src="/scripts/addField.js" defer></script>  <!-- [Defer]carregamento do arquivo depois de renderização all page -->
+
+
+</head>
+<body id="page-give-classes">
+
+   <div id="container">
+
+        <!-- header - Cabecalho pagina -->
+        <header class="page-header">
+           <div class="top-bar-container">
+              <a href="/">
+              <img src="/images/icons/back.svg" alt="Voltar">
+              </a>
+               <img src="/images/logo.svg" alt="Proffy">
+            </div>
+                  
+            <div class="header-content">
+               <strong> Que Incrível que você quer dar aulas</strong><!--  /*strong- fonte negrito*/ -->
+               <p>O primeiro passo, é preencher esse formulário de inscrição</p>
+            </div>
+        </header>
+
+        <!-- Main - conteudo principal da pagina -->  
+        <main>
+         <form action="/save-classes" id="create-class" method="POST"> <!-- [POST]- metodos escondidos do navegador -->  
+             <!-- crio o agrupamento dos dados do formulario em [fieldset] --Seus Dados-->
+             <fieldset>
+               <!-- nome do agrupamento de dados -->
+                 <legend> Seus Dados</legend>
+                 
+             <div class="input-block">
+                 <label for="name">Nome Completo</label>
+                 <input name="name" id="name" required > <!-- [requered]- obrigatorio para envio de formulario -->
+             </div>
+
+             <div class="input-block">
+                <label for="avatar">Link da sua foto <small>(comece com https://)</small></label> <!-- [small]- texto menor(pequeno) -->
+                <input name="avatar" id="avatar" type="url" required > <!-- [type]- tipo do input = Link(url) -->
+            </div>
+
+            <div class="input-block">
+                <label for="whatsapp">Whatsapp <small>(somente números)</small></label>
+                <input name="whatsapp" id="whatsapp" type="number" required > <!-- [type]- tipo do input = numeros -->
+            </div>
+
+            <div class="textarea-block">
+                <label for="bio">Biografia</label>
+                <textarea name="bio"  id="bio" required ></textarea><!-- [textarea]- multiplas linhas no campo -->
+            </div>
+
+
+             </fieldset>
+            
+              <!-- crio o agrupamento dos dados do formulario em [fieldset] --Sobre Aula-->
+              <fieldset>
+                 <legend>Sobre a aula</legend>
+                 <div class="select-block">
+                    <!-- <label for="subject" id="subject"> Matéria</label>  -->
+                    <label for="subject"> Matéria</label> 
+                    <select name="subject" id="subject" required> 
+                        <option value="">Selecione uma opção</option>         
+                           
+                        {% for subject in subjects %}
+                            <option value="{{loop.index}}" > 
+                               {{subject}} <!--{{subject}} coleção de nomes argumentos de seleção = materiais  add in server.js-->
+                            </option> 
+                        {% endfor %}
+
+                    </select> 
+                 </div>
+
+                 <div class="input-block">
+                     <label for="cost">Custo da sua hora/aula 
+                         <small>(R$)</small>
+                     </label>
+                     <input name="cost" id="cost" type="number" required >
+                 </div>
+              </fieldset>
+              
+              <!-- crio o agrupamento dos dados do formulario em [fieldset] --Horários disponiveis-->
+              <fieldset id="schedule-items">
+                  <legend>Horários disponíveis
+                      <button type="button" id="add-time">+ Novo Horario</button>
+                  </legend>
+                  <div class="schedule-item">
+                   <div class="select-block">
+                     <label for="weekday">Dia da semana</label>
+                     <select name="weekday[]" required>
+                        <option value="">Selecione uma opção</option>
+                          
+                         {% for weekday in weekdays %}
+                         <option value="{{loop.index0}}">
+                           {{weekday}} 
+                         </option> 
+                         {% endfor %} 
+          
+                     </select> <!-- name="weeday[]"- sig. pode atribuir mais de uma valor -->
+                   </div> 
+
+                   <div class="input-block">
+                       <label for="time_from">Das</label>
+                       <input type="time" name="time_from[]" required> <!-- name="time_from[]- sig. pode atribuir mais de uma valor -->
+                   </div> 
+
+                   <div class="input-block">
+                    <label for="time_to">Até</label>
+                    <input type="time" name="time_to[]" required> <!-- name="time_to[]- sig. pode atribuir mais de uma valor -->
+                </div> 
+                   
+                  </div>
+  
+              </fieldset>        
+         </form>
+
+         <footer>
+             <p>
+                 <img src="/images/icons/warning.svg" alt="Aviso Importante">
+                 Importante ! <br> Preencha todos os dados
+             </p>
+             <button type="submit" form="create-class"> Salvar cadastro</button> <!-- adiciono form="create-class", pois o botãos esta depois de fechado tag</form> -->
+         </footer>
+        </main>
+     
+   </div>
+
+</body>
+
+</html>
